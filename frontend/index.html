@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book Audio RAG — Reading Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+
+<div class="room">
+
+  <!-- Shelf: list of uploaded books, styled as spines -->
+  <aside class="shelf">
+    <div class="shelf-head">
+      <span class="eyebrow">Reading Room</span>
+      <h1>Your Shelf</h1>
+    </div>
+
+    <label class="spine spine--upload" for="file-input">
+      <span class="spine-plus">+</span>
+      <span class="spine-label">Add a book</span>
+    </label>
+    <input id="file-input" type="file" accept=".pdf,.epub,.txt" hidden />
+
+    <div id="spines" class="spines"></div>
+  </aside>
+
+  <!-- Main: catalog drawer for the selected book -->
+  <main class="drawer">
+    <div id="empty-state" class="empty-state">
+      <p class="empty-mark">&#9776;</p>
+      <p>Pick a book from the shelf, or add one, to open its catalog.</p>
+    </div>
+
+    <div id="book-view" class="book-view hidden">
+      <header class="book-header">
+        <div>
+          <span class="eyebrow" id="book-status"></span>
+          <h2 id="book-title">&nbsp;</h2>
+          <p class="book-meta" id="book-meta"></p>
+        </div>
+        <button id="run-all" class="btn btn--primary">Generate detailed summary</button>
+      </header>
+
+      <div id="processing-note" class="processing-note hidden">
+        Indexing your book — chunking the text and building the retrieval
+        index. This can take a little while for longer books.
+      </div>
+
+      <nav id="tabs" class="tabs"></nav>
+
+      <section id="panel" class="panel"></section>
+    </div>
+  </main>
+
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

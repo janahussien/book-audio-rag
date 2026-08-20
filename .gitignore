@@ -1,0 +1,16 @@
+# env / secrets
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# data (heavy, local only)
+data/
+
+# misc
+.DS_Store
+:memory:.ses
+test.mp3
