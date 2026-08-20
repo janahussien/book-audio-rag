@@ -34,7 +34,12 @@ async def health():
 
 FRONTEND_DIR = Path("/app/frontend")
 
-app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
+import logging
+logger = logging.getLogger(__name__)
+logger.info(f"Frontend dir exists: {FRONTEND_DIR.exists()}")
+logger.info(f"Frontend dir contents: {list(FRONTEND_DIR.iterdir())}")
+
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
 
 @app.get("/")
 async def index():
