@@ -18,7 +18,7 @@ ebooklib==0.18
 beautifulsoup4==4.12.3
 
 # Text-to-speech (free, local, no API key)
-edge-tts==6.1.12
+edge-tts==7.2.8
 
 # Optional web enrichment
 tavily-python==0.5.0
