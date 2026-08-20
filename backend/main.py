@@ -32,7 +32,7 @@ app.include_router(audio.router)
 async def health():
     return {"status": "ok"}
 
-FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+FRONTEND_DIR = Path.cwd() / "frontend"
 
 app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 
