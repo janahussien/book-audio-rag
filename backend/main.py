@@ -12,7 +12,6 @@ from backend.api import books, summary, audio
 
 logging.basicConfig(level=logging.INFO)
 
-# create data dirs on startup (Railway has no persistent disk so they won't exist)
 for path in ["data/uploads", "data/vectorstore", "data/audio"]:
     os.makedirs(path, exist_ok=True)
 
@@ -33,11 +32,10 @@ app.include_router(audio.router)
 async def health():
     return {"status": "ok"}
 
-# serve frontend — must be LAST, it's a catch-all
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 
 @app.get("/")
 async def index():
     return FileResponse(FRONTEND_DIR / "index.html")
-
-app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
